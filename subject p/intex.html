@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select a Subject - Student's Assistant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    header h2 {
+      font-size: 1.5rem;
+      color: #111827;
+    }
+
+    header .auth-links a {
+      margin-left: 20px;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #111827;
+    }
+
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .subject-card {
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .subject-card:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border-color: #cbd5e1;
+    }
+
+    .subject-icon {
+      font-size: 1.5rem;
+    }
+
+    .subject-name {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1f2937;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Student's Assistant</h2>
+    <div class="auth-links">
+      <a href="/login.html">Log In</a>
+      <a href="/signup.html">Sign Up</a>
+    </div>
+  </header>
+
+  <h1>Select a Subject</h1>
+
+  <div class="subjects-grid">
+    <div class="subject-card"><div class="subject-icon">➕</div><div class="subject-name">Mathematics</div></div>
+    <div class="subject-card"><div class="subject-icon">⚛️</div><div class="subject-name">Science</div></div>
+    <div class="subject-card"><div class="subject-icon">🏛️</div><div class="subject-name">History</div></div>
+    <div class="subject-card"><div class="subject-icon">📘</div><div class="subject-name">English</div></div>
+    <div class="subject-card"><div class="subject-icon">🎨</div><div class="subject-name">Art</div></div>
+    <div class="subject-card"><div class="subject-icon">🌍</div><div class="subject-name">Geography</div></div>
+  </div>
+
+</body>
+</html>

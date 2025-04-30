@@ -1,0 +1,126 @@
+# Backend code (Python - Django based) for the 'Student's Assistant' project: Landing + Auth + Dashboard + Subjects
+
+# Step 1: Project Setup (already assumed done)
+# django-admin startproject students_assistant
+# cd students_assistant
+# python manage.py startapp core
+
+# Step 2: students_assistant/settings.py
+INSTALLED_APPS = [
+    ...,
+    'core',
+    'rest_framework',
+    'corsheaders',
+]
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    ...,
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Step 3: core/models.py (User model not overridden)
+# You can add models for subjects, tasks, etc. later if needed
+
+# Step 4: core/views.py
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['GET'])
+def landing_data(request):
+    return Response({
+        "headline": "Welcome to Student’s Assistant",
+        "tagline": "Your personal study helper — easy, fast and reliable.",
+        "features": [
+            {"icon": "📘", "title": "Access All Textbooks", "description": "Find all your school materials in one place."},
+            {"icon": "🎥", "title": "Learn With Videos", "description": "Understand topics faster through curated tutorials."},
+            {"icon": "💬", "title": "Chat With Teachers", "description": "Get your questions answered instantly."}
+        ]
+    })
+
+@csrf_exempt
+@api_view(['POST'])
+def register_user(request):
+    name = request.data.get('full_name')
+    email = request.data.get('email')
+    password = request.data.get('password')
+    confirm_password = request.data.get('confirm_password')
+
+    if password != confirm_password:
+        return JsonResponse({'error': 'Passwords do not match'}, status=400)
+
+    if User.objects.filter(username=email).exists():
+        return JsonResponse({'error': 'User already exists'}, status=400)
+
+    user = User.objects.create_user(username=email, email=email, password=password, first_name=name)
+    return JsonResponse({'message': 'User created successfully'})
+
+@csrf_exempt
+@api_view(['POST'])
+def login_user(request):
+    email = request.data.get('email')
+    password = request.data.get('password')
+    confirm_password = request.data.get('confirm_password')
+
+    if password != confirm_password:
+        return JsonResponse({'error': 'Passwords do not match'}, status=400)
+
+    user = authenticate(username=email, password=password)
+    if user is not None:
+        return JsonResponse({'message': 'Login successful'})
+    else:
+        return JsonResponse({'error': 'Invalid credentials'}, status=401)
+
+@api_view(['GET'])
+def dashboard_data(request):
+    return Response({
+        "progress": 75,
+        "tasks_completed": 3,
+        "subjects": ["Mathematics", "Physics", "History", "Literature"],
+        "recent_activity": [
+            "Watched Video Tutorial",
+            "Completed Homework 5",
+            "Viewed History Material"
+        ]
+    })
+
+@api_view(['GET'])
+def subject_list(request):
+    return Response({
+        "subjects": [
+            {"name": "Mathematics", "icon": "➕"},
+            {"name": "Science", "icon": "⚛️"},
+            {"name": "History", "icon": "🏛️"},
+            {"name": "English", "icon": "📘"},
+            {"name": "Art", "icon": "🎨"},
+            {"name": "Geography", "icon": "🌍"},
+        ]
+    })
+
+# Step 5: core/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('landing/', views.landing_data),
+    path('register/', views.register_user),
+    path('login/', views.login_user),
+    path('dashboard/', views.dashboard_data),
+    path('subjects/', views.subject_list),
+]
+
+# Step 6: students_assistant/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('core.urls')),
+]
+
+

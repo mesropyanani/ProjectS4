@@ -1,0 +1,71 @@
+# Backend code (Python - Django based) for the 'Student's Assistant' landing page functionality
+
+# Step 1: Project Setup (already assumed done)
+# django-admin startproject students_assistant
+# cd students_assistant
+# python manage.py startapp core
+
+# Step 2: students_assistant/settings.py
+INSTALLED_APPS = [
+    ...,
+    'core',
+    'rest_framework',  # if using Django REST Framework
+    'corsheaders',      # if you want frontend-backend to connect cross-origin
+]
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    ...,
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Step 3: core/models.py (empty for landing page)
+# No models needed for landing UI
+
+# Step 4: core/views.py
+from django.shortcuts import render
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['GET'])
+def landing_data(request):
+    return Response({
+        "headline": "Welcome to Student’s Assistant",
+        "tagline": "Your personal study helper — easy, fast and reliable.",
+        "features": [
+            {
+                "icon": "📘",
+                "title": "Access All Textbooks",
+                "description": "Find all your school materials in one place."
+            },
+            {
+                "icon": "🎥",
+                "title": "Learn With Videos",
+                "description": "Understand topics faster through curated tutorials."
+            },
+            {
+                "icon": "💬",
+                "title": "Chat With Teachers",
+                "description": "Get your questions answered instantly."
+            }
+        ]
+    })
+
+# Step 5: core/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('landing/', views.landing_data),
+]
+
+# Step 6: students_assistant/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('core.urls')),
+]

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mathematics Resources - Student's Assistant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    header h2 {
+      font-size: 1.5rem;
+      color: #111827;
+    }
+
+    header a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      color: #6b7280;
+      margin-bottom: 30px;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .resource-card {
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .resource-card:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border-color: #cbd5e1;
+    }
+
+    .resource-icon {
+      font-size: 1.5rem;
+    }
+
+    .resource-name {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1f2937;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Student's Assistant</h2>
+    <a href="/login.html">Log Out</a>
+  </header>
+
+  <h1>Mathematics</h1>
+  <h2>Select a resource</h2>
+
+  <div class="resource-grid">
+    <div class="resource-card"><div class="resource-icon">⏸️</div><div class="resource-name">Textbooks</div></div>
+    <div class="resource-card"><div class="resource-icon">▶️</div><div class="resource-name">Videos</div></div>
+    <div class="resource-card"><div class="resource-icon">📂</div><div class="resource-name">Additional Materials</div></div>
+    <div class="resource-card"><div class="resource-icon">💬</div><div class="resource-name">Chat with Teacher</div></div>
+    <div class="resource-card"><div class="resource-icon">🗺️</div><div class="resource-name">Geography</div></div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In - Student's Assistant</title>
+  <style>
+    body {
+      background-color: #f0f4f8;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    .login-container h1 {
+      color: #111827;
+      margin-bottom: 10px;
+    }
+    .login-container p {
+      color: #6b7280;
+      margin-bottom: 30px;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .login-container button {
+      width: 100%;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .login-container button:hover {
+      background-color: #2563eb;
+    }
+    .login-container .signup-link {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+    .login-container .signup-link a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    .login-container .signup-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Log In</h1>
+    <p>Sign in to your account</p>
+    <form action="/api/login/" method="POST">
+      <input type="email" name="email" placeholder="Email Address" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <input type="password" name="confirm_password" placeholder="Confirm Password" required />
+      <button type="submit">Log In</button>
+    </form>
+    <div class="signup-link">
+      Don't have an account? <a href="/signup.html">Sign up</a>
+    </div>
+  </div>
+</body>
+</html>
