@@ -1,18 +1,9 @@
-# Backend code (Python - Django based) for the 'Student's Assistant' project: Landing + Auth + Dashboard + Subjects + Subject Resources
-
-# Step 1: Project Setup (already assumed done)
-# django-admin startproject students_assistant
-# cd students_assistant
-# python manage.py startapp core
-
-# Step 2: students_assistant/settings.py
 INSTALLED_APPS = [
     ...,
     'core',
     'rest_framework',
     'corsheaders',
 ]
-
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     ...,
